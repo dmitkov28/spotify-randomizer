@@ -17,6 +17,12 @@ Creates random Spotify Playlists with Terraform
 - Spotify Developer Account
 - Terraform
 
+### Usage
+
+```
+make run
+```
+
 ## TODO:
 - Work on a more robust Spotify integration
 - Improve random track selection logic
