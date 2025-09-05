@@ -58,7 +58,7 @@ class SpotifyTokenManager:
                 "client_secret": self.client_secret,
             },
         )
-        breakpoint()
+        
         if new_token_res.status_code != 200:
             raise Exception("Failed fetching token")
 
