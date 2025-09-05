@@ -6,6 +6,10 @@ on:
 jobs:
     create-playlist:
         runs-on: ubuntu-latest
+        permissions:
+            id-token: write
+            contents: read
+            
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
