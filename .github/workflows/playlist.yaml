@@ -39,6 +39,10 @@ jobs:
               run: terraform init -backend-config=backend.conf
 
             - name: Terraform Apply
+              env:
+                SPOTIFY_API_KEY: ${{ secrets.SPOTIFY_API_KEY }}
+                SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+                SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
               working-directory: terraform
               run: terraform apply -auto-approve -var="spotify_api_key=${{secrets.SPOTIFY_API_KEY}}"
 
