@@ -40,7 +40,7 @@ jobs:
 
             - name: Terraform Apply
               env:
-                SPOTIFY_API_KEY: ${{ secrets.SPOTIFY_API_KEY }}
+                SPOTIFY_API_TOKEN: ${{ secrets.SPOTIFY_API_TOKEN }}
                 SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
                 SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
               working-directory: terraform
