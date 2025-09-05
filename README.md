@@ -26,4 +26,4 @@ make run
 ## TODO:
 - Work on a more robust Spotify integration
 - Improve random track selection logic
-- Automate playlist creation with Github actions
+- Figure out how to deal with Spotify tokens
