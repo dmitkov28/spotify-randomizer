@@ -67,7 +67,5 @@ class SpotifyTokenManager:
     def validate_token(self):
         if self._is_token_valid():
             return
-
         new_token = self._get_new_token()
         self.set_token_to_env(new_token)
-        print("Token updated successfully.")
