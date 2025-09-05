@@ -7,7 +7,7 @@ resource "spotify_playlist" "playlist" {
 }
 
 data "external" "script" {
-  program = ["uv", "run", "../src/main.py"]
+  program = ["uv", "run", "--directory", "../src", "../src/main.py"]
 }
 
 
