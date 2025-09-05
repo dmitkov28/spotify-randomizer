@@ -10,6 +10,10 @@ terraform {
       version = "~> 2.3.5"
     }
   }
+
+  backend "s3" {
+    encrypt = true
+  }
 }
 
 provider "spotify" {
