@@ -50,10 +50,9 @@ def get_random_tracks(
     with httpx.Client() as client:
         for req in requests:
             res = client.send(req)
-            if res.status_code != 200:
-                raise ValueError("Request failed")
-            tracks = res.json().get("tracks", {}).get("items")
-            all_tracks.extend(tracks)
+            if res.status_code == 200:
+                tracks = res.json().get("tracks", {}).get("items")
+                all_tracks.extend(tracks)
 
     return all_tracks
 
