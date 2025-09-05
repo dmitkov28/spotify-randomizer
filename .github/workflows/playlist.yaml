@@ -9,7 +9,7 @@ jobs:
         permissions:
             id-token: write
             contents: read
-            
+
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -31,6 +31,8 @@ jobs:
 
             - name: Set up Terraform
               uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: "1.13.1"
               
             - name: Terraform Init
               working-directory: terraform
