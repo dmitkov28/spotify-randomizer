@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.9.8"
+  required_version = "~> 1.13.1"
   required_providers {
     spotify = {
       version = "~> 0.2.7"
