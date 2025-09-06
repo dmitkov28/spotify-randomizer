@@ -15,6 +15,8 @@ class SpotifyTokenManager:
     user_access_token_env_key = "SPOTIFY_USER_ACCESS_TOKEN"
     user_refresh_token_env_key = "SPOTIFY_USER_REFRESH_TOKEN"
 
+    dotenv_path = "../.env"
+
     def __init__(self) -> None:
         self.app_token = self._get_token_from_env(self.app_token_env_key)
         self.user_access_token = self._get_token_from_env(
