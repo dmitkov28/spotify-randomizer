@@ -69,3 +69,30 @@ def process_fetched_tracks(tracks: List) -> List[Item]:
 
 def get_track_ids(tracks: List[Item]) -> List[str]:
     return [track.id for track in tracks]
+
+
+def create_spotify_playlist(
+    user_id, playlist_name, access_token, public=False, description=""
+):
+    url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json",
+    }
+    data = {"name": playlist_name, "public": public, "description": description}
+    response = httpx.post(url, headers=headers, json=data)
+    response.raise_for_status()
+    return response.json()
+
+
+def add_to_playlist(playlist_id: str, track_ids: List[str], access_token: str):
+    endpoint = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json",
+    }
+    data = {"uris": [f"spotify:track:{track_id}" for track_id in track_ids]}
+
+    response = httpx.post(endpoint, headers=headers, json=data)
+    response.raise_for_status()
+    return response.json()
