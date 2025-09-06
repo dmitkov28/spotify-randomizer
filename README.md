@@ -1,13 +1,12 @@
 # Spotify Randomizer (WIP)
 
-Creates random Spotify Playlists with Terraform
+Creates random Spotify Playlists
 
 ## Features
 
 - Spotify API integration with token management
 - Random track discovery
-- Track ID extraction for playlist creation
-- Playlist creation via Terraform (because why not 😄)
+- Playlist creation
 
 ## Setup
 
@@ -15,15 +14,12 @@ Creates random Spotify Playlists with Terraform
 
 - Python 3.13
 - Spotify Developer Account
-- Terraform
 
 ### Usage
 
-```
-make run
-```
+TODO
 
 ## TODO:
-- Work on a more robust Spotify integration
 - Improve random track selection logic
-- Figure out how to deal with Spotify tokens
+- Add usage description
+- Configure GH Action 
