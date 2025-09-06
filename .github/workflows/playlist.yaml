@@ -22,3 +22,14 @@ jobs:
             - name: Set up python environment
               working-directory: src
               run: uv sync
+
+            - name: Create Playlist
+              env:
+                SPOTIFY_API_KEY: ${{ secrets.SPOTIFY_API_KEY }}
+                SPOTIFY_USER_ID: ${{ secrets.SPOTIFY_USER_ID }}
+                SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+                SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+                SPOTIFY_USER_ACCESS_TOKEN: ${{ secrets.SPOTIFY_USER_ACCESS_TOKEN }}
+                SPOTIFY_USER_REFRESH_TOKEN: ${{ secrets.SPOTIFY_USER_REFRESH_TOKEN }}
+              working-directory: src
+              run: uv run main.py
