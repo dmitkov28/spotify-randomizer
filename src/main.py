@@ -10,15 +10,13 @@ from token_check import SpotifyTokenManager
 
 if __name__ == "__main__":
     load_dotenv()
-    token_manager = SpotifyTokenManager()
-    token_manager.validate_app_token()
-
+    
     playlist_name = "Test"
 
     sm = SpotifyTokenManager()
     sm.validate_app_token()
     sm.validate_user_token()
-
+    
     playlist = create_spotify_playlist(
         sm.user_id, playlist_name=playlist_name, access_token=sm.user_access_token
     )
