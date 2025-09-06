@@ -32,11 +32,11 @@ class SpotifyTokenManager:
         self.user_id = self._get_token_from_env(self.user_id_env_key)
 
     def _get_token_from_env(self, token_name):
-        token = get_key(".env", token_name)
+        token = get_key(self.dotenv_path, token_name)
         return token
 
     def set_token_to_env(self, token_name, token):
-        set_key(".env", token_name, token)
+        set_key(self.dotenv_path, token_name, token)
 
     def _is_app_token_valid(self):
         res = httpx.get(
