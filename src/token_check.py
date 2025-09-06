@@ -7,7 +7,7 @@ class SpotifyTokenManager:
     check_endpoint = "https://api.spotify.com/v1/search?q=test&type=artist&limit=1"
     token_endpoint = "https://accounts.spotify.com/api/token"
 
-    app_token_env_key = "SPOTIFY_API_TOKEN"
+    app_token_env_key = "SPOTIFY_API_KEY"
     client_secret_env_key = "SPOTIFY_CLIENT_SECRET"
     client_id_env_key = "SPOTIFY_CLIENT_ID"
 
@@ -90,4 +90,4 @@ class SpotifyTokenManager:
         if self._is_user_access_token_valid():
             return
         new_token = self._get_new_user_access_token()
-        self.set_token_to_env(self.user_access_token, new_token)
+        self.set_token_to_env(self.user_access_token_env_key, new_token)
