@@ -1,20 +1,13 @@
-import os
 import random
 from typing import List
 
 import httpx
 
 from model import Item
+from token_manager import SpotifyTokenManager, TokenManager
 
 SPOTIFY_API = "https://api.spotify.com/v1"
 SEARCH_ENDPOINT = "/search"
-
-
-def get_token() -> str:
-    token = os.getenv("SPOTIFY_API_TOKEN")
-    if not token:
-        raise ValueError("Missing Spotify API Key")
-    return token
 
 
 def generate_random_offsets(n_offsets: int = 5) -> List[int]:
@@ -96,3 +89,24 @@ def add_to_playlist(playlist_id: str, track_ids: List[str], access_token: str):
     response = httpx.post(endpoint, headers=headers, json=data)
     response.raise_for_status()
     return response.json()
+
+
+class SpotifyClient:
+    def __init__(self, token_manager: TokenManager = SpotifyTokenManager()) -> None:
+        self.token_manager = token_manager
+        self.token_manager.refresh_token()
+
+    def create_playlist_with_random_tracks(self, playlist_name: str):
+        playlist = create_spotify_playlist(
+            self.token_manager.user_id,
+            playlist_name,
+            access_token=self.token_manager.user_access_token,
+        )
+
+        playlist_id = playlist.get("id")
+        tracks = get_random_tracks(self.token_manager.user_access_token)
+        processed_tracks = process_fetched_tracks(tracks)
+        track_ids = get_track_ids(processed_tracks)
+        add_to_playlist(
+            playlist_id, track_ids, access_token=self.token_manager.user_access_token
+        )
