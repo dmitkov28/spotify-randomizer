@@ -1,0 +1,14 @@
+.git
+.github
+**/__pycache__/
+*.pyc
+.env
+.ruff_cache
+README.md
+LICENSE
+Makefile
+.dockerignore
+.gitignore
+
+src/.venv
+src/auth.py
