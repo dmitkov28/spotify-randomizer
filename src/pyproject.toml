@@ -16,3 +16,6 @@ dependencies = [
 auth = [
     "fastapi[standard]>=0.116.1",
 ]
+dev = [
+    "pytest>=8.4.2",
+]
