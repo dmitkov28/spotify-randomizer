@@ -8,9 +8,9 @@ import urllib.parse
 
 load_dotenv()
 
-client_id = os.getenv("SPOTIFY_CLIENT_ID")
-client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
-redirect_uri = os.getenv("SPOTIFY_CLIENT_REDIRECT_URI")
+client_id = os.environ["SPOTIFY_CLIENT_ID"]
+client_secret = os.environ["SPOTIFY_CLIENT_SECRET"]
+redirect_uri = os.environ["SPOTIFY_CLIENT_REDIRECT_URI"]
 
 
 class StateMismatchError(Exception):
