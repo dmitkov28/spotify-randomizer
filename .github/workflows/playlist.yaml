@@ -6,33 +6,19 @@ on:
 jobs:
     create-playlist:
         runs-on: ubuntu-latest
-        permissions:
-            id-token: write
-            contents: read
-
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Set up uv
-              uses: astral-sh/setup-uv@v6
-              with:
-                version: "0.8.15"
-                
-            - name: Set up python environment
-              working-directory: src
-              run: uv sync
+            - name: Build image
+              run: docker build -t spotify .
 
-            - name: Write Spotify secrets to .env
-              working-directory: src
+            - name: Create playlist
               run: |
-                echo "SPOTIFY_API_KEY=${{ secrets.SPOTIFY_API_KEY }}" > ../.env
-                echo "SPOTIFY_USER_ID=${{ secrets.SPOTIFY_USER_ID }}" >> ../.env
-                echo "SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}" >> ../.env
-                echo "SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}" >> ../.env
-                echo "SPOTIFY_USER_ACCESS_TOKEN=${{ secrets.SPOTIFY_USER_ACCESS_TOKEN }}" >> ../.env
-                echo "SPOTIFY_USER_REFRESH_TOKEN=${{ secrets.SPOTIFY_USER_REFRESH_TOKEN }}" >> ../.env
-
-            - name: Create Playlist
-              working-directory: src
-              run: uv run main.py
+                docker run --rm \
+                  -e SPOTIFY_USER_ID="${{ secrets.SPOTIFY_USER_ID }}" \
+                  -e SPOTIFY_CLIENT_ID="${{ secrets.SPOTIFY_CLIENT_ID }}" \
+                  -e SPOTIFY_CLIENT_SECRET="${{ secrets.SPOTIFY_CLIENT_SECRET }}" \
+                  -e SPOTIFY_USER_ACCESS_TOKEN="${{ secrets.SPOTIFY_USER_ACCESS_TOKEN }}" \
+                  -e SPOTIFY_USER_REFRESH_TOKEN="${{ secrets.SPOTIFY_USER_REFRESH_TOKEN }}" \
+                  spotify
